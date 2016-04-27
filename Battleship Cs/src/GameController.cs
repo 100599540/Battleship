@@ -130,15 +130,15 @@ public static class GameController
 		UtilityFunctions.DrawAnimationSequence();
 	}
 
-	private static void PlayMissSequence(int row, int column, bool showAnimation)
+	private static void PlayMissSequence(int row, int column)
 	{
-		if (showAnimation) {
-			UtilityFunctions.AddSplash(row, column);
-		}
+		//if (showAnimation) {
+		//	UtilityFunctions.AddSplash(row, column);
+		//}
 
 		Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
 
-		UtilityFunctions.DrawAnimationSequence();
+		//UtilityFunctions.DrawAnimationSequence();
 	}
 
 	/// <summary>
@@ -186,7 +186,7 @@ public static class GameController
 				PlayHitSequence(result.Row, result.Column, isHuman);
 				break;
 			case ResultOfAttack.Miss:
-				PlayMissSequence(result.Row, result.Column, isHuman);
+				PlayMissSequence(result.Row, result.Column);
 				break;
 			case ResultOfAttack.ShotAlready:
 				Audio.PlaySoundEffect(GameResources.GameSound("Error"));
