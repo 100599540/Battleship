@@ -50,6 +50,10 @@ static class DeploymentController
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
+		
+		if (SwinGame.KeyTyped(KeyCode.vk_Q)){
+			GameController.AddNewState(GaeState.ViewingMainMenu);
+		}
 
 		if (SwinGame.KeyTyped(KeyCode.vk_UP) | SwinGame.KeyTyped(KeyCode.vk_DOWN)) {
 			_currentDirection = Direction.UpDown;
