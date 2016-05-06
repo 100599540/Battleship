@@ -2,7 +2,6 @@ Visual Basic.Net Compiler version 0.0.0.5943 (Mono 4.0.1 - mono-4.2.0-branch/5eb
 Copyright (C) 2004-2010 Rolf Bjarne Kvinge. All rights reserved.
 
 vbnc : Command line : warning VBNC2009: the option platform was not recognized - ignored
-<<<<<<< HEAD
 /Users/TomDavison/Desktop/DP1 Battleship/Battleship/Battleship/src/Model/AIHardPlayer.vb (8,37) : error VBNC30179: class 'AIHardPlayer' and class 'AIHardPlayer' conflict in  ''.
 /Users/TomDavison/Desktop/DP1 Battleship/Battleship/Battleship/src/Model/AIMediumPlayer.vb (6,39) : error VBNC30179: class 'AIMediumPlayer' and class 'AIMediumPlayer' conflict in  ''.
 /Users/TomDavison/Desktop/DP1 Battleship/Battleship/Battleship/src/Model/AIPlayer.vb (5,45) : error VBNC30179: class 'AIPlayer' and class 'AIPlayer' conflict in  ''.
@@ -15,9 +14,3 @@ vbnc : Command line : warning VBNC2009: the option platform was not recognized -
 /Users/TomDavison/Desktop/DP1 Battleship/Battleship/Battleship/src/Model/Tile.vb (6,12) : error VBNC30179: class 'Tile' and class 'Tile' conflict in  ''.
 There were 10 errors and 1 warnings.
 Compilation took 00:00:00.6565890
-=======
-Assembly 'Battleship, Version=0.0, Culture=neutral, PublicKeyToken=null' saved successfully to '/Users/TomDavison/Desktop/DP1 Battleship/Battleship/Battleship/bin/Debug/Battleship.exe'.
-There were 0 errors and 1 warnings.
-Compilation successful
-Compilation took 00:00:01.1149580
->>>>>>> 9954cb4f60d4c5d44c9aaaa84da711de8111557c
