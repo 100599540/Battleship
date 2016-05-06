@@ -25,6 +25,10 @@ static class DiscoveryController
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
+		
+		if (SwinGame.KeyTyped(KeyCode.vk_Q)){
+			GameController.AddNewState(GaeState.ViewingMainMenu);
+		}
 
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
