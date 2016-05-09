@@ -82,9 +82,6 @@ public static class GameController
 			case AIOption.Hard:
 				_ai = new AIHardPlayer(_theGame);
 				break;
-			default:
-				_ai = new AIHardPlayer(_theGame);
-				break;
 		}
 
 		_human = new Player(_theGame);
