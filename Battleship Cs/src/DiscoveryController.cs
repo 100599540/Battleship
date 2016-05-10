@@ -27,7 +27,7 @@ static class DiscoveryController
 		}
 		
 		if (SwinGame.KeyTyped(KeyCode.vk_Q)){
-			GameController.AddNewState(GaeState.ViewingMainMenu);
+			GameController.AddNewState(GameState.ViewingMainMenu);
 		}
 
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
