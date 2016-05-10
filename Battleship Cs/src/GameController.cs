@@ -14,7 +14,7 @@ using SwinGameSDK;
 /// </summary>
 public static class GameController
 {
-
+	private static float _volume = 1f;
 	private static BattleShipsGame _theGame;
 	private static Player _human;
 
@@ -50,7 +50,14 @@ public static class GameController
 	public static Player ComputerPlayer {
 		get { return _ai; }
 	}
-
+	
+	/// </summary>
+	/// <value>The current audio state</value>
+	/// <returns>The current state</returns>
+	public static float CurrentVolume {
+		get { return _volume; }
+	}
+	
 	static GameController()
 	{
 		//bottom state will be quitting. If player exits main menu then the game is over
@@ -125,7 +132,7 @@ public static class GameController
 			UtilityFunctions.AddExplosion(row, column);
 		}
 
-		Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
+		Audio.PlaySoundEffect(GameResources.GameSound("Hit"), _volume);
 
 		UtilityFunctions.DrawAnimationSequence();
 	}
@@ -136,7 +143,7 @@ public static class GameController
 		//	UtilityFunctions.AddSplash(row, column);
 		//}
 
-		Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
+		Audio.PlaySoundEffect(GameResources.GameSound("Miss"), _volume);
 
 		//UtilityFunctions.DrawAnimationSequence();
 	}
@@ -163,12 +170,12 @@ public static class GameController
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Sink"), _volume);
 
 				break;
 			case ResultOfAttack.GameOver:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Sink"), _volume);
 
 				while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
 					SwinGame.Delay(10);
@@ -176,9 +183,9 @@ public static class GameController
 				}
 
 				if (HumanPlayer.IsDestroyed) {
-					Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Lose"), _volume);
 				} else {
-					Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Winner"), _volume);
 				}
 
 				break;
@@ -189,7 +196,7 @@ public static class GameController
 				PlayMissSequence(result.Row, result.Column);
 				break;
 			case ResultOfAttack.ShotAlready:
-				Audio.PlaySoundEffect(GameResources.GameSound("Error"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Error"), _volume);
 				break;
 		}
 	}
@@ -376,5 +383,21 @@ public static class GameController
 	{
 		_aiSetting = setting;
 	}
-
+	
+	/// <summary>
+	/// Turn audio on/off.
+	/// </summary>
+	public static void SwitchAudio()
+	{
+	    if (SwinGame.MusicVolume() > 0)
+        	{
+            	SwinGame.SetMusicVolume(0f);
+            	_volume = 0f;
+        	}
+        else
+        	{
+            SwinGame.SetMusicVolume(1f);
+            _volume = 1f;
+        	}
+	}
 }
