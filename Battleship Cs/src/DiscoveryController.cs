@@ -26,7 +26,7 @@ static class DiscoveryController
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 		
-		if (SwinGame.KeyTyped(KeyCode.vk_Q)){
+		if (SwinGame.KeyTyped(KeyCode.vk_q)){
 			GameController.AddNewState(GameState.ViewingMainMenu);
 		}
 
