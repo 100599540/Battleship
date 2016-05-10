@@ -52,7 +52,7 @@ static class DeploymentController
 		}
 		
 		if (SwinGame.KeyTyped(KeyCode.vk_Q)){
-			GameController.AddNewState(GaeState.ViewingMainMenu);
+			GameController.AddNewState(GameState.ViewingMainMenu);
 		}
 
 		if (SwinGame.KeyTyped(KeyCode.vk_UP) | SwinGame.KeyTyped(KeyCode.vk_DOWN)) {
