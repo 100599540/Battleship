@@ -26,6 +26,11 @@ static class DiscoveryController
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 
+		if (SwinGame.KeyTyped(KeyCode.q)) {
+			GameController.AddNewState(GameState.ViewingMainMenu);
+		}
+
+
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
 		}
