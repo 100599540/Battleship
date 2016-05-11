@@ -24,6 +24,7 @@ public static class GameResources
 		NewImage("Menu", "main_page.jpg");
 		NewImage("Discovery", "discover.jpg");
 		NewImage("Deploy", "deploy.jpg");
+		NewImage("Help", "help_page.jpg");
 
 		//Deployment
 		NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
@@ -182,7 +183,7 @@ public static class GameResources
 		const int ANI_V_CELL_COUNT = 6;
 		const int ANI_CELL_COUNT = 11;
 
-		Audio.PlaySoundEffect(_StartSound, GameController.CurrentVolume);
+		Audio.PlaySoundEffect(_StartSound);
 		SwinGame.Delay(200);
 
 		int i = 0;

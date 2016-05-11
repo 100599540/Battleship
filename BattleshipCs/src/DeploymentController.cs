@@ -50,10 +50,6 @@ static class DeploymentController
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
-		
-		if (SwinGame.KeyTyped(KeyCode.vk_q)){
-			GameController.AddNewState(GameState.ViewingMainMenu);
-		}
 
 		if (SwinGame.KeyTyped(KeyCode.vk_UP) | SwinGame.KeyTyped(KeyCode.vk_DOWN)) {
 			_currentDirection = Direction.UpDown;
@@ -114,7 +110,7 @@ static class DeploymentController
 				try {
 					GameController.HumanPlayer.PlayerGrid.MoveShip(row, col, _selectedShip, _currentDirection);
 				} catch (Exception ex) {
-					Audio.PlaySoundEffect(GameResources.GameSound("Error"), GameController.CurrentVolume);
+					Audio.PlaySoundEffect(GameResources.GameSound("Error"));
 					UtilityFunctions.Message = ex.Message;
 				}
 			}
