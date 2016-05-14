@@ -29,11 +29,13 @@ static class MenuController
 			"SCORES",
 			"QUIT",
 			"HELP",
-			"FULLSCREEN"
+			"FULLSCREEN",
+			"AUDIO"
 		},
 		new string[] {
 			"RETURN",
 			"SURRENDER",
+			"AUDIO",
 			"QUIT"
 		},
 		new string[] {
@@ -62,6 +64,7 @@ static class MenuController
 	private const int MAIN_MENU_QUIT_BUTTON = 3;
 	private const int MAIN_MENU_HELP_BUTTON = 4;
 	private const int MAIN_MENU_FULLSCREEN_BUTTON = 5;
+	private const int MAIN_MENU_AUDIO_BUTTON = 6;
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
@@ -69,10 +72,10 @@ static class MenuController
 	private const int SETUP_MENU_EXIT_BUTTON = 3;
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_SURRENDER_BUTTON = 1;
-
-	private const int GAME_MENU_QUIT_BUTTON = 2;
+	private const int GAME_MENU_AUDIO_BUTTON = 2;
+	private const int GAME_MENU_QUIT_BUTTON = 3;
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
-
+	private static readonly Color FADE_COLOR = SwinGame.RGBAColor(105,105,102, 255);
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
 	/// <summary>
 	/// Handles the processing of user input when the main menu is showing
@@ -206,11 +209,15 @@ static class MenuController
 			int btnLeft = 0;
 			btnLeft = MENU_LEFT + BUTTON_SEP * (i + xOffset);
 			//SwinGame.FillRectangle(Color.White, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT)
-			SwinGame.DrawTextLines(_menuStructure[menu][i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
-
-			if (SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset)) {
-				SwinGame.DrawRectangle(HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
-			}
+			if (_menuStructure[menu][i].Equals("AUDIO"))
+             		{
+                 		if (SwinGame.MusicVolume() > 0)
+                 	 	SwinGame.DrawTextLines(_menuStructure[menu][i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
+                 		else
+                 	 	SwinGame.DrawTextLines(_menuStructure[menu][i], FADE_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
+             		}
+ 			else
+ 			    SwinGame.DrawTextLines(_menuStructure[menu][i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
 		}
 	}
 
@@ -284,6 +291,9 @@ static class MenuController
 			case MAIN_MENU_FULLSCREEN_BUTTON:
 				SwinGame.ToggleFullScreen();
 				break;
+			case MAIN_MENU_AUDIO_BUTTON:
+ 				GameController.SwitchAudio();
+ 				break;
 		}
 	}
 
@@ -327,6 +337,9 @@ static class MenuController
 			case GAME_MENU_QUIT_BUTTON:
 				GameController.AddNewState(GameState.Quitting);
 				break;
+			case GAME_MENU_AUDIO_BUTTON:
+ 				GameController.SwitchAudio();
+ 				break;
 		}
 	}
 }
