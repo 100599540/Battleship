@@ -94,6 +94,8 @@ public static class GameController
 		_theGame.AttackCompleted += AttackCompleted;
 
 		AddNewState(GameState.Deploying);
+		EndingGameController.destroyed_AI = new List<Ship>();
+		EndingGameController.destroyed_human = new List<Ship>();
 	}
 
 	/// <summary>
@@ -163,22 +165,25 @@ public static class GameController
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
-
+				Audio.PlaySoundEffect(GameResources.GameSound("Sink"), _volume);
+				if (isHuman) EndingGameController.destroyed_AI.Add(result.Ship);
+				else EndingGameController.destroyed_human.Add(result.Ship);
 				break;
 			case ResultOfAttack.GameOver:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
-
+				Audio.PlaySoundEffect(GameResources.GameSound("Sink"), _volume);
+				if (isHuman) EndingGameController.destroyed_AI.Add(result.Ship);
+				else EndingGameController.destroyed_human.Add(result.Ship);
+				
 				while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
 					SwinGame.Delay(10);
 					SwinGame.RefreshScreen();
 				}
 
 				if (HumanPlayer.IsDestroyed) {
-					Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Lose"), _volume);
 				} else {
-					Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Winner"), _volume);
 				}
 
 				break;
@@ -189,7 +194,7 @@ public static class GameController
 				PlayMissSequence(result.Row, result.Column);
 				break;
 			case ResultOfAttack.ShotAlready:
-				Audio.PlaySoundEffect(GameResources.GameSound("Error"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Error"), _volume);
 				break;
 		}
 	}
