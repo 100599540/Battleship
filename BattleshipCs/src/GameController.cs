@@ -14,7 +14,7 @@ using SwinGameSDK;
 /// </summary>
 public static class GameController
 {
-
+	private static float _volume = 1f;
 	private static BattleShipsGame _theGame;
 	private static Player _human;
 
