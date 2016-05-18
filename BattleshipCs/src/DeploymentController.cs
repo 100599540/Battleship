@@ -103,7 +103,7 @@ static class DeploymentController
 		mouse = SwinGame.MousePosition();
 
 		//Calculate the row/col clicked
-		int row = 0;
+		int row = 10;
 		int col = 0;
 		row = Convert.ToInt32(Math.Floor((mouse.Y - 130) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
 		col = Convert.ToInt32(Math.Floor((mouse.X - UtilityFunctions.FIELD_LEFT) / (UtilityFunctions.CELL_WIDTH + UtilityFunctions.CELL_GAP)));
